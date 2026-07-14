@@ -1,0 +1,1044 @@
+/* frontend/src/index.css
+
+body { 
+  margin: 0; 
+  background: #9fa8a3; 
+  font-family: 'Courier New', monospace; 
+  color: #111; 
+}
+.app-container { 
+  display: flex; 
+  flex-direction: column; 
+  height: 100vh; 
+}
+ 
+.app-header { 
+  background: #333; 
+  color: #39ff14; 
+  padding: 15px 30px; 
+  display: flex; 
+  justify-content: space-between; 
+  border-bottom: 8px solid #222; 
+  text-shadow: 0 0 5px #39ff14; 
+}
+.logo-section { display: flex; gap: 10px; align-items: center; }
+.status-badge { 
+  background: #111; 
+  border: 2px inset #555; 
+  padding: 5px 10px; 
+  color: #ff0055; 
+}
+
+.layout-split { display: flex; flex: 1; overflow: hidden; padding: 20px; gap: 20px; }
+
+ 
+.main-panel, .side-panel { 
+  background: #d0d4d1; 
+  border: 4px outset #eee; 
+  padding: 20px; 
+  border-radius: 4px; 
+  overflow-y: auto; 
+  flex: 1; 
+}
+.side-panel { max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
+
+ 
+.btn-primary, .btn-secondary, .btn-add, .btn-launch, .btn-play-all { 
+  background: #e0e0e0; 
+  border: 2px solid #555; 
+  border-bottom: 5px solid #444; 
+  border-radius: 4px; 
+  padding: 8px 15px; 
+  font-weight: bold; 
+  cursor: pointer; 
+  text-transform: uppercase; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 5px; 
+  color: #222; 
+}
+.btn-primary:active, .btn-add:active, .btn-play-all:active { 
+  border-bottom: 2px solid #444; 
+  transform: translateY(3px);  
+}
+.btn-primary { background: #ff0055; color: white; border-color: #aa0033; }
+
+ 
+.search-input, .filter-select { 
+  background: #051005; 
+  color: #39ff14; 
+  border: 3px inset #555; 
+  padding: 10px; 
+  font-family: inherit; 
+  width: 100%; 
+  box-sizing: border-box; 
+}
+.input-wrapper { position: relative; flex: 1; }
+.search-icon { position: absolute; left: 10px; top: 12px; color: #39ff14; }
+.search-input { padding-left: 35px; }
+.search-bar-row, .filters-row { display: flex; gap: 10px; margin-bottom: 15px; }
+
+ 
+.results-list { display: flex; flex-direction: column; gap: 10px; }
+.track-card { 
+  background: #c2c8c4; 
+  border: 2px inset #fff; 
+  padding: 10px; 
+  display: flex; 
+  justify-content: space-between; 
+  cursor: pointer; 
+}
+.active-card { border: 2px solid #ff0055; background: #e8ece9; }
+.track-meta { font-size: 0.8rem; color: #555; display: flex; gap: 10px; margin-top: 5px; }
+.platform-badge { background: #222; color: #00e5ff; padding: 2px 5px; font-size: 0.7rem; border-radius: 3px; }
+
+ 
+.player-deck { 
+  background: #222; 
+  border: 5px inset #444; 
+  padding: 20px; 
+  text-align: center; 
+  color: #39ff14; 
+}
+.deck-visual { 
+  width: 100px; 
+  height: 100px; 
+  border: 4px solid #555; 
+  border-radius: 50%; 
+  margin: 0 auto 15px; 
+  background: repeating-radial-gradient(#111, #333 10%); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+.deck-center-hole { width: 30px; height: 30px; background: #fff; border-radius: 50%; }
+.spinning { animation: spin 2s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+ 
+.playlist-item { background: #b0b5b9; border: 2px solid #888; padding: 10px; margin-bottom: 5px; }
+.active-playlist { background: #051005; color: #39ff14; border: 2px inset #555; }
+.playlist-header-row { display: flex; justify-content: space-between; cursor: pointer; }
+.playlist-tracks { margin-top: 10px; padding-left: 10px; border-left: 2px dashed #555; font-size: 0.85rem; }
+.saved-track-row { margin-top: 8px; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+.active-icon { color: #ff0055; } 
+.dim-icon { color: #555; }
+
+
+*/
+
+/* frontend/src/index.css */
+
+body {
+  margin: 0;
+  background: #008080; /* Classic Windows 95 Teal Desktop */
+  font-family: "Tahoma", sans-serif;
+  color: #000;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+/* end of casette styles */
+
+/* --- Win95 Windows Panels ---
+.app-header, .main-panel, .side-panel { 
+  background: #c0c0c0;  
+  border: 2px solid; 
+  border-color: #fff #000 #000 #fff;  
+  padding: 2px; 
+}
+.layout-split { display: flex; flex: 1; overflow: hidden; gap: 10px; }
+.main-panel, .side-panel { padding: 10px; overflow-y: auto; flex: 1; }
+.side-panel { max-width: 400px; display: flex; flex-direction: column; gap: 10px; }
+
+ 
+.app-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background: #000080; / 
+  color: white; 
+  padding: 5px 10px; 
+  font-weight: bold; 
+  border-color: #000080; 
+  margin-bottom: 5px; 
+}
+.logo-section { display: flex; gap: 8px; align-items: center; } 
+h1, h2, h3 { margin: 0; font-size: 1rem; }
+.status-badge { 
+  background: #c0c0c0; 
+  color: #000; 
+  border: 2px solid; 
+  border-color: #000 #fff #fff #000;  
+  padding: 2px 5px; 
+  font-size: 0.8rem; 
+}
+h2, h3 { 
+  background: #000080; 
+  color: white; 
+  padding: 4px; 
+  margin-bottom: 10px; 
+}
+
+ 
+.search-input, .filter-select { 
+  background: #fff; 
+  border: 2px solid; 
+  border-color: #000 #fff #fff #000; 
+  padding: 5px; 
+  width: 100%; 
+  box-sizing: border-box; 
+}
+.input-wrapper { position: relative; flex: 1; } 
+.search-icon { display: none; }  
+.search-bar-row, .filters-row { display: flex; gap: 5px; margin-bottom: 10px; }
+.btn-primary, .btn-secondary, .btn-add, .btn-launch, .btn-play-all { 
+  background: #c0c0c0; 
+  border: 2px solid; 
+  border-color: #fff #000 #000 #fff; 
+  padding: 4px 12px; 
+  font-family: inherit; 
+  font-size: 0.85rem; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 4px; 
+}
+.btn-primary:active, .btn-add:active, .btn-play-all:active { 
+  border-color: #000 #fff #fff #000;  
+}
+
+ 
+.track-card { 
+  display: flex; 
+  justify-content: space-between; 
+  padding: 5px; 
+  border-bottom: 1px dotted #888; 
+  background: #fff; 
+  cursor: pointer; 
+}
+.active-card { background: #000080; color: white; }
+.track-title { font-weight: bold; font-size: 0.9rem; }
+.track-meta { font-size: 0.75rem; display: flex; gap: 10px; color: inherit; opacity: 0.8; }
+.platform-badge { font-size: 0.7rem; border: 1px solid currentColor; padding: 1px 4px; }
+
+ 
+.player-deck { 
+  background: #000; 
+  border: 2px solid; 
+  border-color: #888 #fff #fff #888; 
+  padding: 15px; 
+  color: #00ff00;  
+  text-align: center; 
+  font-family: monospace; 
+}
+.deck-visual { display: none; }  
+.now-playing-info h4 { color: #00ff00; margin-bottom: 5px; text-transform: uppercase; }
+.btn-launch { 
+  background: #333; 
+  color: #00ff00; 
+  text-decoration: none; 
+  border: 1px solid #00ff00; 
+  padding: 2px 6px; 
+}
+
+.spinning { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+ 
+.playlists-section { 
+  background: #fff; 
+  border: 2px solid; 
+  border-color: #000 #fff #fff #000; 
+  padding: 5px; 
+  flex: 1; 
+  overflow-y: auto; 
+}
+.playlists-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.playlists-header h3 { background: none; color: #000; padding: 0; }
+.playlist-item { margin-bottom: 2px; }
+.playlist-header-row { 
+  display: flex; 
+  justify-content: space-between; 
+  padding: 4px; 
+  cursor: pointer; 
+  font-size: 0.9rem; 
+}
+.active-playlist .playlist-header-row { background: #000080; color: white; }
+.playlist-tracks { padding: 5px; background: #eee; border: 1px solid #ccc; font-size: 0.85rem; }
+.saved-track-row { padding: 3px; cursor: pointer; display: flex; gap: 5px; }
+.active-icon { color: #000080; font-weight: bold; }
+
+/*
+
+/* END OF WIN95 WINDOWS PANEL STYLES */
+
+/*  SAREGAMA CARVAN STYLES 
+
+body { 
+  margin: 0; 
+ 
+  background-color: #3E2723; 
+  background-image: repeating-linear-gradient(45deg, #4b3621 0px, #3c2b1a 10px, #4b3621 20px); 
+  font-family: 'Georgia', serif; 
+  color: #fff; 
+}
+
+.app-container { 
+  display: flex; 
+  flex-direction: column; 
+  height: 100vh; 
+  padding: 20px; 
+  box-sizing: border-box; 
+}
+
+ 
+.app-header, .main-panel, .side-panel { 
+  background: linear-gradient(135deg, #e6d070, #c4a030); 
+  border: 4px solid #5a4a17; 
+  border-radius: 8px; 
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.4), 5px 5px 15px rgba(0,0,0,0.6); 
+  color: #2b2b2b; 
+}
+
+.app-header { 
+  display: flex; 
+  justify-content: space-between; 
+  padding: 15px 30px; 
+  margin-bottom: 20px; 
+  align-items: center; 
+}
+
+.logo-section { 
+  display: flex; 
+  gap: 10px; 
+  align-items: center; 
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.5); 
+}
+
+.status-badge { 
+  background: #222; 
+  color: #ffc107; 
+  padding: 5px 10px; 
+  border-radius: 50px; 
+  font-family: monospace; 
+  border: 2px inset #111; 
+  box-shadow: 0 0 8px #ffc107; 
+}
+
+.layout-split { display: flex; flex: 1; overflow: hidden; gap: 20px; }
+.main-panel, .side-panel { padding: 20px; overflow-y: auto; flex: 1; }
+.side-panel { max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
+
+ 
+.search-input, .filter-select { 
+  background: #EAEAE0; 
+  border: 2px inset #888; 
+  padding: 10px; 
+  border-radius: 4px; 
+  width: 100%; 
+  box-sizing: border-box; 
+}
+.input-wrapper { position: relative; flex: 1; }
+.search-icon { position: absolute; left: 10px; top: 12px; color: #555; }
+.search-input { padding-left: 35px; }
+.search-bar-row, .filters-row { display: flex; gap: 10px; margin-bottom: 15px; }
+
+ 
+.btn-primary, .btn-secondary, .btn-add, .btn-launch, .btn-play-all { 
+  background: radial-gradient(circle, #eee, #aaa); 
+  border: 2px solid #333; 
+  border-radius: 20px; 
+  padding: 6px 15px; 
+  font-weight: bold; 
+  cursor: pointer; 
+  color: #111; 
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.5); 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 5px; 
+}
+.btn-primary:active, .btn-play-all:active, .btn-add:active { 
+  box-shadow: inset 1px 2px 3px rgba(0,0,0,0.5); 
+}
+
+ 
+.track-card { 
+  background: rgba(255,255,255,0.2); 
+  border: 1px solid #947a26; 
+  padding: 10px; 
+  border-radius: 4px; 
+  margin-bottom: 8px; 
+  display: flex; 
+  justify-content: space-between; 
+  cursor: pointer; 
+  transition: 0.2s; 
+}
+.active-card { background: #3E2723; color: #e6d070; }
+.track-title { font-weight: bold; }
+.track-meta { font-size: 0.8rem; display: flex; gap: 10px; opacity: 0.8; margin-top: 4px; }
+.platform-badge { font-family: monospace; background: #222; color: #fff; padding: 2px 6px; border-radius: 10px; font-size: 0.7rem; }
+ 
+.player-deck { 
+  background: #1a110a; 
+  border: 6px inset #333; 
+  border-radius: 10px; 
+  padding: 20px; 
+  text-align: center; 
+  color: #e6d070; 
+  box-shadow: inset 0 0 20px #000; 
+}
+.deck-visual { 
+  width: 120px; 
+  height: 120px; 
+  background: radial-gradient(#222, #000); 
+  border: 2px solid #555; 
+  border-radius: 50%; 
+  margin: 0 auto 15px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.8); 
+}
+.deck-center-hole { width: 40px; height: 40px; background: #D4AF37; border-radius: 50%; border: 2px solid #000; }
+.spinning { animation: spin 3s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+ 
+.playlists-header { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 2px solid #947a26; padding-bottom: 5px; }
+.playlist-item { background: #3E2723; color: #EAEAE0; padding: 10px; border-radius: 4px; margin-bottom: 5px; border: 1px solid #1a110a; }
+.active-playlist { border-left: 5px solid #ffc107; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
+.playlist-header-row { display: flex; justify-content: space-between; cursor: pointer; }
+.playlist-tracks { margin-top: 10px; background: #2a1e12; padding: 10px; border-radius: 4px; }
+.saved-track-row { margin-top: 8px; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+.active-icon { color: #ffc107; }
+
+*/
+
+/* END OF SAREGAMA CARVAN STYLES */
+
+/* --- Modern Dark Mode --- 
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body { 
+  margin: 0; 
+  background-color: #0f1115;  
+  font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+  color: #f8fafc; 
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container { 
+  display: flex; 
+  flex-direction: column; 
+  height: 100vh; 
+}
+
+ 
+.app-header { 
+  background: rgba(15, 17, 21, 0.7); 
+  backdrop-filter: blur(10px); 
+  border-bottom: 1px solid #1e2128; 
+  padding: 16px 32px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo-section { display: flex; gap: 12px; align-items: center; font-weight: 700; color: #fff; }
+.deck-icon { color: #6366f1; }  
+
+.status-badge { 
+  background: rgba(16, 185, 129, 0.1); 
+  color: #10b981;  
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 4px 12px; 
+  border-radius: 20px; 
+  font-size: 0.75rem; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  letter-spacing: 0.5px; 
+}
+
+.layout-split { display: flex; flex: 1; overflow: hidden; padding: 24px 32px; gap: 24px; }
+
+ 
+.main-panel, .side-panel { 
+  background: #161920; 
+  border: 1px solid #1e2128; 
+  border-radius: 16px; 
+  padding: 24px; 
+  overflow-y: auto; 
+  flex: 1; 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.side-panel { max-width: 420px; display: flex; flex-direction: column; gap: 24px; }
+
+ 
+h1, h2, h3 { margin: 0; }
+h2, h3 { 
+  font-size: 0.85rem; 
+  color: #94a3b8; 
+  font-weight: 600; 
+  letter-spacing: 1px; 
+  text-transform: uppercase; 
+  margin-bottom: 16px; 
+}
+
+ 
+.search-input, .filter-select { 
+  background: #0f1115; 
+  border: 1px solid #272a35; 
+  color: #f8fafc; 
+  padding: 12px 16px; 
+  border-radius: 8px; 
+  font-family: inherit; 
+  font-size: 0.95rem;
+  width: 100%; 
+  box-sizing: border-box; 
+  transition: all 0.2s ease;
+}
+.search-input:focus, .filter-select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+.input-wrapper { position: relative; flex: 1; }
+.search-icon { position: absolute; left: 14px; top: 14px; color: #64748b; }
+.search-input { padding-left: 44px; }
+.search-bar-row, .filters-row { display: flex; gap: 12px; margin-bottom: 16px; }
+.filters-row { margin-bottom: 32px; }
+
+ 
+.btn-primary, .btn-secondary, .btn-add, .btn-launch, .btn-play-all { 
+  border: none;
+  border-radius: 8px; 
+  padding: 8px 16px; 
+  font-weight: 600; 
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
+  gap: 8px; 
+  transition: all 0.2s ease; 
+}
+.btn-primary { 
+  background: #6366f1; 
+  color: white; 
+  padding: 12px 24px; 
+  font-size: 0.95rem;
+}
+.btn-primary:hover { background: #4f46e5; transform: translateY(-1px); }
+.btn-secondary { background: rgba(255, 255, 255, 0.05); color: #e2e8f0; border: 1px solid #272a35; }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+.btn-add { background: #272a35; color: #f8fafc; }
+.btn-add:hover { background: #334155; }
+.btn-launch { background: rgba(99, 102, 241, 0.1); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.2); }
+.btn-launch:hover { background: rgba(99, 102, 241, 0.2); }
+.btn-play-all { background: #10b981; color: #022c22; margin-bottom: 16px; }
+.btn-play-all:hover { background: #059669; }
+
+ 
+.results-list { display: flex; flex-direction: column; gap: 12px; }
+.track-card { 
+  background: #1e2128; 
+  border: 1px solid transparent; 
+  padding: 16px; 
+  border-radius: 12px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  cursor: pointer; 
+  transition: all 0.2s ease; 
+}
+.track-card:hover { transform: translateY(-2px); border-color: #272a35; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.active-card { 
+  border-color: #6366f1; 
+  background: rgba(99, 102, 241, 0.05); 
+}
+.active-card:hover { border-color: #6366f1; }
+
+.track-title { font-weight: 600; font-size: 1rem; color: #f8fafc; margin-bottom: 6px; }
+.track-meta { font-size: 0.8rem; color: #94a3b8; display: flex; gap: 16px; align-items: center; }
+.track-meta span { display: flex; align-items: center; gap: 6px; }
+.track-actions { display: flex; gap: 12px; align-items: center; }
+.platform-badge { background: #0f1115; color: #64748b; padding: 4px 8px; font-size: 0.75rem; border-radius: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;}
+
+ 
+.player-deck { 
+  background: linear-gradient(145deg, #1e2128, #161920); 
+  border: 1px solid #272a35;
+  border-radius: 16px; 
+  padding: 32px 24px; 
+  text-align: center; 
+}
+.deck-visual { 
+  width: 120px; 
+  height: 120px; 
+  border-radius: 50%; 
+  margin: 0 auto 24px; 
+  background: conic-gradient(from 0deg, #6366f1, #a855f7, #6366f1);
+  padding: 4px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+}
+.deck-center-hole { 
+  width: 100%; 
+  height: 100%; 
+  background: #161920; 
+  border-radius: 50%; 
+}
+.spinning { animation: spin 4s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.now-playing-info h4 { font-size: 1.1rem; color: #f8fafc; margin-bottom: 8px; }
+.now-playing-info p { font-size: 0.9rem; color: #94a3b8; margin: 0 0 20px 0; }
+.empty-deck { color: #64748b; font-size: 0.9rem; font-style: italic; margin: 20px 0 0 0; }
+
+ 
+.playlists-section { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+.playlists-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.playlists-list { overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 4px; }
+.playlist-item { 
+  background: #1e2128; 
+  border-radius: 12px; 
+  border-left: 4px solid transparent;
+  transition: all 0.2s ease; 
+}
+.active-playlist { 
+  background: #272a35; 
+  border-left-color: #6366f1; 
+}
+.playlist-header-row { display: flex; justify-content: space-between; align-items: center; padding: 16px; cursor: pointer; font-weight: 500; }
+.track-count { font-size: 0.8rem; color: #94a3b8; background: #0f1115; padding: 2px 8px; border-radius: 12px; }
+.playlist-tracks { padding: 0 16px 16px 16px; }
+.saved-track-row { 
+  font-size: 0.85rem; 
+  color: #cbd5e1; 
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  transition: background 0.2s;
+}
+.saved-track-row:hover { background: rgba(255,255,255,0.05); }
+.active-icon { color: #6366f1; } 
+.dim-icon { color: #64748b; }
+
+ 
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* END OF DARK MODE Responsive Design */
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap");
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top left, #120e24 0%, #08090f 100%);
+  font-family: "Outfit", sans-serif;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header */
+.app-header {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8, 9, 15, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.logo-section {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+.brand-icon {
+  color: #a78bfa;
+}
+.status-badge {
+  background: rgba(167, 139, 250, 0.1);
+  color: #a78bfa;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+.layout-split {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 24px 40px;
+  gap: 30px;
+}
+
+/* Panels */
+.main-panel,
+.side-panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+.side-panel {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+h3 {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 0 0 16px 0;
+}
+
+/* Inputs */
+.search-input,
+.filter-select {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box; /* This keeps the search bar from pushing into the button! */
+  transition: all 0.3s ease;
+}
+.search-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: #a78bfa;
+  background: rgba(0, 0, 0, 0.5);
+}
+.input-wrapper {
+  position: relative;
+  flex: 1;
+}
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  color: #64748b;
+}
+.search-input {
+  padding-left: 48px;
+}
+.search-bar-row,
+.filters-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.filters-row {
+  margin-bottom: 32px;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+.btn-add,
+.btn-launch,
+.btn-play-all {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: white;
+  padding: 14px 28px;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.btn-add {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+.btn-add:hover {
+  background: #8b5cf6;
+}
+.btn-launch {
+  background: rgba(139, 92, 246, 0.15);
+  color: #c4b5fd;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  margin-top: 8px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+.btn-launch:hover {
+  background: rgba(139, 92, 246, 0.25);
+  color: #fff;
+}
+.btn-play-all {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+/* Track Cards */
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.track-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.track-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+.active-card {
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.track-title {
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.track-meta {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.track-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.track-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.platform-badge {
+  background: rgba(0, 0, 0, 0.4);
+  color: #94a3b8;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- THE NEW ALBUM ART DECK --- */
+.player-deck {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.album-art-wrapper {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+.album-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.album-art-wrapper:hover .album-art {
+  transform: scale(1.05);
+}
+
+.now-playing-info {
+  width: 100%;
+}
+.now-playing-info h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 6px 0;
+}
+.now-playing-info p {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin: 0 0 20px 0;
+}
+.empty-deck {
+  padding: 60px 0;
+  color: #475569;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.empty-icon {
+  opacity: 0.5;
+}
+
+/* Playlists */
+.playlists-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.playlists-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.playlists-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.playlist-item {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.active-playlist {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+.playlist-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #fff;
+}
+.track-count {
+  font-size: 0.75rem;
+  color: #a78bfa;
+  background: rgba(167, 139, 250, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.playlist-tracks {
+  padding: 0 16px 16px 16px;
+}
+.saved-track-row {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s;
+}
+.saved-track-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+.active-icon {
+  color: #a78bfa;
+}
+.dim-icon {
+  color: #475569;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
