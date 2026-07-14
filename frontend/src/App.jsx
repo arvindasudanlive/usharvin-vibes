@@ -14,8 +14,9 @@ import {
 
 function App() {
   // THIS IS THE FIX: It dynamically figures out where the backend is automatically!
-  const API_BASE_URL = `http://${window.location.hostname}:5001`;
-
+  //const API_BASE_URL = `http://${window.location.hostname}:5001`;
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:5001";
   const [searchQuery, setSearchQuery] = useState("");
   const [searchType, setSearchType] = useState("song_name");
   const [selectedLanguage, setSelectedLanguage] = useState("Tamil");

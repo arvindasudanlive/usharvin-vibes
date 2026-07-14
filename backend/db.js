@@ -1,8 +1,6 @@
 // const sqlite3 = require("sqlite3").verbose();
 // const path = require("path");
 
-
-
 // // This creates a local file named cinevinyl.db in your backend folder
 // const dbPath = path.resolve(__dirname, "cinevinyl.db");
 
