@@ -1181,6 +1181,32 @@ body {
   justify-content: center;
   margin-bottom: 15px;
 }
+/* Delete buttons */
+.btn-delete, .btn-delete-track {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+}
+.btn-delete:hover { color: #ef4444; background-color: rgba(239, 68, 68, 0.1); }
+.btn-delete-track:hover { color: #ef4444; }
+
+/* Clear Search Button inside the input wrapper */
+.btn-clear-search {
+  position: absolute;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.btn-clear-search:hover { color: white; }
 
 .search-form {
   background-color: var(--bg-panel);

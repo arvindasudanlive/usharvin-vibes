@@ -10,13 +10,14 @@ import {
   Play,
   ListVideo,
   Disc3,
+  Trash2,
+  X,
 } from "lucide-react";
 
 function App() {
-  // THIS IS THE FIX: It dynamically figures out where the backend is automatically!
-  //const API_BASE_URL = `http://${window.location.hostname}:5001`;
   const API_BASE_URL =
     import.meta.env.VITE_API_BASE_URL || "http://localhost:5001";
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchType, setSearchType] = useState("song_name");
   const [selectedLanguage, setSelectedLanguage] = useState("Tamil");
@@ -31,11 +32,20 @@ function App() {
     fetchPlaylists();
   }, []);
 
+  // Feature: Update album art when switching playlists
   useEffect(() => {
     if (activePlaylistId) {
       fetch(`${API_BASE_URL}/api/playlists/${activePlaylistId}/tracks`)
         .then((res) => res.json())
-        .then((data) => setActivePlaylistTracks(data))
+        .then((data) => {
+          setActivePlaylistTracks(data);
+          // Set the first track of the new playlist as the current track for the UI
+          if (data.length > 0) {
+            setCurrentTrack(data[0]);
+          } else {
+            setCurrentTrack(null);
+          }
+        })
         .catch((err) => console.error(err));
     }
   }, [activePlaylistId]);
@@ -68,6 +78,27 @@ function App() {
     }
   };
 
+  // Feature: Delete a playlist
+  const handleDeletePlaylist = async (id, e) => {
+    e.stopPropagation(); // Prevent opening the playlist
+    if (!window.confirm("Are you sure you want to delete this entire shelf?"))
+      return;
+    try {
+      await fetch(`${API_BASE_URL}/api/playlists/${id}`, { method: "DELETE" });
+      const remaining = playlists.filter((pl) => pl.id !== id);
+      setPlaylists(remaining);
+      if (activePlaylistId === id) {
+        setActivePlaylistId(remaining.length > 0 ? remaining[0].id : null);
+        if (remaining.length === 0) {
+          setActivePlaylistTracks([]);
+          setCurrentTrack(null);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleAddTrack = async (track) => {
     if (!activePlaylistId) return alert("Select a shelf first!");
     try {
@@ -83,7 +114,26 @@ function App() {
         const savedTrack = await response.json();
         setActivePlaylistTracks([savedTrack, ...activePlaylistTracks]);
         fetchPlaylists(); // Refresh counts
+        if (!currentTrack) setCurrentTrack(savedTrack);
       }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Feature: Delete a track from a playlist
+  const handleDeleteTrack = async (trackId, e) => {
+    e.stopPropagation(); // Prevent making it the active playing track
+    try {
+      await fetch(
+        `${API_BASE_URL}/api/playlists/${activePlaylistId}/tracks/${trackId}`,
+        { method: "DELETE" },
+      );
+      setActivePlaylistTracks(
+        activePlaylistTracks.filter((t) => t.id !== trackId),
+      );
+      fetchPlaylists(); // Refresh counts
+      if (currentTrack?.id === trackId) setCurrentTrack(null);
     } catch (error) {
       console.error(error);
     }
@@ -101,6 +151,12 @@ function App() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  // Feature: Clear Search
+  const handleClearSearch = () => {
+    setSearchQuery("");
+    setSearchResults([]);
   };
 
   const handlePlayAll = () => {
@@ -161,6 +217,15 @@ function App() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="search-input"
                 />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={handleClearSearch}
+                    className="btn-clear-search"
+                  >
+                    <X size={18} />
+                  </button>
+                )}
               </div>
               <button type="submit" className="btn-primary">
                 FIND
@@ -187,7 +252,7 @@ function App() {
             </div>
           </form>
 
-          <h3>RESULTS</h3>
+          {searchResults.length > 0 && <h3>RESULTS</h3>}
           <div className="results-list">
             {searchResults.map((track) => (
               <div
@@ -275,10 +340,23 @@ function App() {
                     onClick={() => setActivePlaylistId(pl.id)}
                     className="playlist-header-row"
                   >
-                    <span>
-                      <ListVideo size={14} /> {pl.name}
-                    </span>
-                    <span className="track-count">{pl.tracksCount} tracks</span>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                      }}
+                    >
+                      <ListVideo size={14} />
+                      <span>{pl.name}</span>
+                      <span className="track-count">({pl.tracksCount})</span>
+                    </div>
+                    <button
+                      onClick={(e) => handleDeletePlaylist(pl.id, e)}
+                      className="btn-delete"
+                    >
+                      <Trash2 size={14} />
+                    </button>
                   </div>
                   {activePlaylistId === pl.id &&
                     activePlaylistTracks.length > 0 && (
@@ -295,15 +373,30 @@ function App() {
                             onClick={() => setCurrentTrack(track)}
                             className="saved-track-row"
                           >
-                            <Music
-                              size={12}
-                              className={
-                                currentTrack?.id === track.id
-                                  ? "active-icon"
-                                  : "dim-icon"
-                              }
-                            />
-                            {track.title}
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                flex: 1,
+                              }}
+                            >
+                              <Music
+                                size={12}
+                                className={
+                                  currentTrack?.id === track.id
+                                    ? "active-icon"
+                                    : "dim-icon"
+                                }
+                              />
+                              {track.title}
+                            </div>
+                            <button
+                              onClick={(e) => handleDeleteTrack(track.id, e)}
+                              className="btn-delete-track"
+                            >
+                              <X size={14} />
+                            </button>
                           </div>
                         ))}
                       </div>
