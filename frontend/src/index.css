@@ -646,8 +646,7 @@ h2, h3 {
 ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
-/* END OF DARK MODE Responsive Design */
-
+/* END OF DARK MODE Responsive Design  
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap");
 
 body {
@@ -664,7 +663,7 @@ body {
   height: 100vh;
 }
 
-/* Header */
+ 
 .app-header {
   padding: 20px 40px;
   display: flex;
@@ -704,7 +703,7 @@ body {
   gap: 30px;
 }
 
-/* Panels */
+ 
 .main-panel,
 .side-panel {
   background: rgba(255, 255, 255, 0.02);
@@ -731,7 +730,7 @@ h3 {
   margin: 0 0 16px 0;
 }
 
-/* Inputs */
+ 
 .search-input,
 .filter-select {
   background: rgba(0, 0, 0, 0.3);
@@ -742,7 +741,7 @@ h3 {
   font-family: inherit;
   font-size: 1rem;
   width: 100%;
-  box-sizing: border-box; /* This keeps the search bar from pushing into the button! */
+  box-sizing: border-box;  
   transition: all 0.3s ease;
 }
 .search-input:focus,
@@ -774,7 +773,7 @@ h3 {
   margin-bottom: 32px;
 }
 
-/* Buttons */
+ 
 .btn-primary,
 .btn-secondary,
 .btn-add,
@@ -842,7 +841,7 @@ h3 {
   width: 100%;
 }
 
-/* Track Cards */
+ 
 .results-list {
   display: flex;
   flex-direction: column;
@@ -903,7 +902,7 @@ h3 {
   letter-spacing: 0.5px;
 }
 
-/* --- THE NEW ALBUM ART DECK --- */
+ 
 .player-deck {
   text-align: center;
   display: flex;
@@ -959,7 +958,7 @@ h3 {
   opacity: 0.5;
 }
 
-/* Playlists */
+ 
 .playlists-section {
   display: flex;
   flex-direction: column;
@@ -1028,7 +1027,7 @@ h3 {
   color: #475569;
 }
 
-/* Scrollbar */
+ 
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -1041,4 +1040,97 @@ h3 {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+-------------END OF DARK DESIGN --------------- */
+
+/* =========================================
+   MOBILE RESPONSIVE LAYOUT (iPhone / Phones)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Change the main layout from side-by-side to stacked */
+  .layout-split {
+    flex-direction: column;
+    height: auto;
+    overflow-y: visible;
+    padding-bottom: 120px; /* Leave space for the sticky player */
+  }
+
+  /* Make both panels take full width */
+  .main-panel,
+  .side-panel {
+    flex: none;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  /* Remove the side border and add a top border for separation */
+  .side-panel {
+    border-left: none;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+
+  /* Pin the Now Playing deck to the bottom of the screen like Spotify */
+  .player-deck {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #0f0f13; /* Match your app background */
+    border-top: 1px solid #333;
+    border-radius: 20px 20px 0 0;
+    padding: 15px;
+    margin: 0;
+    display: flex;
+    flex-direction: row; /* Make it horizontal like a mini-player */
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Adjust album art for the mini-player */
+  .player-deck .album-art-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .player-deck .album-art {
+    max-height: 100%;
+    border-radius: 8px;
+  }
+
+  /* Adjust text and button for the mini-player */
+  .now-playing-info {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .now-playing-info h4 {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .now-playing-info p {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  .btn-launch {
+    padding: 6px 12px;
+    font-size: 11px;
+    align-self: flex-start;
+  }
+
+  /* Hide the empty deck icon on mobile to save space */
+  .empty-deck {
+    display: none;
+  }
 }
