@@ -63,7 +63,7 @@ app.get("/api/playlists", async (req, res) => {
 });
 
 // Create a new playlist
-app.get("/api/playlists", async (req, res) => {
+app.post("/api/playlists", async (req, res) => {
   try {
     const { name } = req.body;
     const result = await pool.query(
