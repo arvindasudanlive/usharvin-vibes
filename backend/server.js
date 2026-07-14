@@ -147,3 +147,27 @@ const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
+// Delete a playlist
+app.delete("/api/playlists/:id", async (req, res) => {
+  try {
+    await pool.query("DELETE FROM playlists WHERE id = $1", [req.params.id]);
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Delete a track from a playlist
+app.delete("/api/playlists/:playlistId/tracks/:trackId", async (req, res) => {
+  try {
+    const { playlistId, trackId } = req.params;
+    await pool.query("DELETE FROM tracks WHERE id = $1 AND playlist_id = $2", [
+      trackId,
+      playlistId,
+    ]);
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
